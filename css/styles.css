@@ -1,0 +1,9 @@
+body {
+    margin-left: 50px;
+    margin-right: 50px;
+   
+}
+.card {
+max-width: 300px; 
+margin: 0 auto; 
+}
