@@ -1,9 +1,21 @@
 body {
     margin-left: 50px;
     margin-right: 50px;
+    background-color: azure;
    
 }
 .card {
-max-width: 300px; 
-margin: 0 auto; 
+    max-width: 300px; 
+    margin: 0 auto; 
+    background-color: rgb(250, 248, 248);
+    margin-bottom: 20px;
+}
+h1 {
+    margin-bottom: 10px;
+}
+.complete-button {
+    background-color: green;
+}
+.incomplete-button {
+    background-color: red;
 }
