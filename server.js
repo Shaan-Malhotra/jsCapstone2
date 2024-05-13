@@ -48,9 +48,13 @@ app.get("/scripts/todos.js", (req, res) => {
     res.set('Content-Type', 'text/javascript');
     res.sendFile(path.join(__dirname, 'scripts/todos.js'));
 }); 
-app.get("/scripts/bootstrap_icons", (req, res) => {
+app.get("/scripts/newTodo.js", (req, res) => {
     res.set('Content-Type', 'text/javascript');
-    res.sendFile(path.join(__dirname, 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.12.0/bootstrap-icons.min.js'));
+    res.sendFile(path.join(__dirname, 'scripts/newTodo.js'));
+}); 
+app.get("/scripts/newUser.js", (req, res) => {
+    res.set('Content-Type', 'text/javascript');
+    res.sendFile(path.join(__dirname, 'scripts/newUser.js'));
 }); 
 
 
