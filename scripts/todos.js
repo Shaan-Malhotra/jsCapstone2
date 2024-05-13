@@ -53,11 +53,8 @@ function fetchUserTodos(userId) {
                     // Create a Bootstrap card for each todo task
                     var card = document.createElement("div");
                     card.classList.add("col");
-
                     var cardBody = document.createElement("div");
                     cardBody.classList.add("card");
-
-                    console.log("Completed:", todo.completed);
 
                     // create check icon
                     const checkSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
@@ -70,7 +67,6 @@ function fetchUserTodos(userId) {
                     const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
                     path.setAttribute("d", "M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425");
                     checkSvg.appendChild(path);
-                    //  document.getElementById("icon-container").appendChild(checkSvg);
 
                     // create x icon
                     const xSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
@@ -83,13 +79,8 @@ function fetchUserTodos(userId) {
                     const xPath = document.createElementNS("http://www.w3.org/2000/svg", "path");
                     xPath.setAttribute("d", "M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708");
                     xSvg.appendChild(xPath);
-                    // document.getElementById("icon-container").appendChild(xSvg);
 
                     var completedIcon = todo.completed ? checkSvg.outerHTML : xSvg.outerHTML;
-                    
-
-
-                    // iconContainer.innerHTML = completedIcon;
 
                     var cardContent = `
                         <div class="card-body">
@@ -110,11 +101,11 @@ function fetchUserTodos(userId) {
                             </div>
                         </div>
                     `;
-
+                   
                     cardBody.innerHTML = cardContent;
                     card.appendChild(cardBody);
                     todoList.appendChild(card);
-                    console.log(todo.completed);
+        
                     if (!todo.completed) {
                         const completeButton = card.querySelector('.complete-button');
                         completeButton.style.display = 'block';

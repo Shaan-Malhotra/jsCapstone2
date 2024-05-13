@@ -2,6 +2,8 @@ body {
     margin-left: 50px;
     margin-right: 50px;
     background-color: azure;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
    
 }
 .card {
@@ -12,10 +14,42 @@ body {
 }
 h1 {
     margin-bottom: 10px;
+    font-weight: bold;
 }
 .complete-button {
     background-color: green;
 }
 .incomplete-button {
     background-color: red;
+}
+.homeCarousel {
+    height: 50px;
+    width: 50px;
+}
+.homeContainer {
+    text-align: center;
+}
+#homeButtonContainer {
+    display: flex;
+    flex-direction: column; /* Stack buttons vertically */
+    align-items: center; /* Center buttons horizontally */
+    margin-top: 20px; /* Add space between header and buttons */
+}
+
+#homeButtonContainer button {
+    background-color: #007bff;
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+}
+
+#homeButtonContainer button:hover {
+    background-color: #0056b3;
+    transform: scale(1.1); /* Increase button size on hover */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Add shadow on hover */
 }
