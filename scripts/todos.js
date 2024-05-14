@@ -1,19 +1,4 @@
-console.log("worked");
-
-/* var checkIcon = document.createElement('span');
-checkIcon.classList.add('bi', 'bi-check');
-
-// Create an x icon element
-var xIcon = document.createElement('span');
-xIcon.classList.add('bi', 'bi-x');
-// Append the icons to a container element in your HTML
-var container = document.getElementById('icon-container');
-container.appendChild(checkIcon.cloneNode(true));
-container.appendChild(xIcon.cloneNode(true));
-*/
-
 document.addEventListener("DOMContentLoaded", function () {
-    // Fetch registered users and populate dropdown
     fetchUsers();
 
     // Add event listener to dropdown
@@ -27,6 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 });
+// Fetch registered users and populate dropdown
 function fetchUsers() {
     fetch("/api/users")
         .then(response => response.json())
@@ -39,13 +25,14 @@ function fetchUsers() {
         })
         .catch(error => console.error("Error fetching users:", error));
 }
-
+//fetch user todos and display as boostrap cards
 function fetchUserTodos(userId) {
     fetch(`/api/todos/byuser/${userId}`)
         .then(response => response.json())
         .then(todos => {
             var todoList = document.getElementById("todoList");
-            todoList.innerHTML = ""; // Clear todo list
+            // Clear todo list
+            todoList.innerHTML = "";
             if (todos.length === 0) {
                 todoList.innerHTML = "<p class='text-muted'>No ToDo tasks found for this user.</p>";
             } else {
@@ -80,8 +67,10 @@ function fetchUserTodos(userId) {
                     xPath.setAttribute("d", "M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708");
                     xSvg.appendChild(xPath);
 
+                    // set icon equal to bootstrap check or x icon baased on the corresponding true or false value
                     var completedIcon = todo.completed ? checkSvg.outerHTML : xSvg.outerHTML;
 
+                    // create card content
                     var cardContent = `
                         <div class="card-body">
                             <h5 class="card-title">${todo.description}</h5>
@@ -101,31 +90,34 @@ function fetchUserTodos(userId) {
                             </div>
                         </div>
                     `;
-                   
+
                     cardBody.innerHTML = cardContent;
                     card.appendChild(cardBody);
                     todoList.appendChild(card);
-        
+
+                    // condtional to display either the mark as complete or mark as incomplete button
                     if (!todo.completed) {
                         const completeButton = card.querySelector('.complete-button');
                         completeButton.style.display = 'block';
-                        completeButton.addEventListener('click', function() {
+                        completeButton.addEventListener('click', function () {
                             markAsComplete(todo.id);
                         });
                     }
                     else {
                         const incompleteButton = card.querySelector('.incomplete-button');
                         incompleteButton.style.display = 'block';
-                        incompleteButton.addEventListener('click', function() {
+                        incompleteButton.addEventListener('click', function () {
                             markAsIncomplete(todo.id);
                         });
                     }
-                    
+
                 });
             }
         })
         .catch(error => console.error("Error fetching user todos:", error));
 }
+
+// function to mark an item as complete in the API
 function markAsComplete(id) {
     fetch(`/api/todos/${id}`, {
         method: 'PUT',
@@ -133,19 +125,20 @@ function markAsComplete(id) {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            completed: true // Set completed to true to mark as complete
+            completed: true
         })
     })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Failed to mark todo as complete');
-        }
-        // Assuming fetchUserTodos fetches updated todo list from server
-        location.reload();
-        alert("item marked as complete")
-    })
-    .catch(error => console.error("Error marking todo as complete:", error));
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to mark todo as complete');
+            }
+            alert("item marked as complete");
+            location.reload();
+        })
+        .catch(error => console.error("Error marking todo as complete:", error));
 }
+
+// function to mark as incomplete
 function markAsIncomplete(id) {
     fetch(`/api/todos/${id}`, {
         method: 'PUT',
@@ -153,16 +146,15 @@ function markAsIncomplete(id) {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            completed: false // Set completed to true to mark as complete
+            completed: false
         })
     })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Failed to mark todo as incomplete');
-        }
-        // Assuming fetchUserTodos fetches updated todo list from server
-        location.reload();
-        alert("item marked as incomplete")
-    })
-    .catch(error => console.error("Error marking todo as incomplete:", error));
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to mark todo as incomplete');
+            }
+            alert("item marked as incomplete");
+            location.reload();
+        })
+        .catch(error => console.error("Error marking todo as incomplete:", error));
 }

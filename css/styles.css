@@ -3,41 +3,43 @@ body {
     margin-right: 50px;
     background-color: azure;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-
-   
 }
+
 .card {
-    max-width: 300px; 
-    margin: 0 auto; 
+    max-width: 300px;
+    margin: 0 auto;
     background-color: rgb(250, 248, 248);
     margin-bottom: 20px;
 }
+
 h1 {
     margin-bottom: 10px;
     font-weight: bold;
 }
+
 .complete-button {
     background-color: green;
 }
+
 .incomplete-button {
     background-color: red;
 }
-.homeCarousel {
-    height: 50px;
-    width: 50px;
-}
+
 .homeContainer {
     text-align: center;
 }
+
 #homeButtonContainer {
     display: flex;
-    flex-direction: column; /* Stack buttons vertically */
-    align-items: center; /* Center buttons horizontally */
-    margin-top: 20px; /* Add space between header and buttons */
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
 }
 
 #homeButtonContainer button {
     background-color: #007bff;
+    width: 250px;
+    height: 75px;
     color: white;
     padding: 15px 30px;
     border: none;
@@ -50,6 +52,6 @@ h1 {
 
 #homeButtonContainer button:hover {
     background-color: #0056b3;
-    transform: scale(1.1); /* Increase button size on hover */
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Add shadow on hover */
+    transform: scale(1.1);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
 }

@@ -1,11 +1,11 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Fetch users from the API
     fetch('/api/users')
         .then(response => response.json())
         .then(data => {
             // Get the select element
             const select = document.getElementById('assignee-select');
-            
+
             // Populate the select element with options for each user
             data.forEach(user => {
                 const option = document.createElement('option');
@@ -15,25 +15,25 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         })
         .catch(error => console.error('Error fetching users:', error));
-
+    // Fetch users from the API
     fetch('/api/categories')
-    .then(response => response.json())
-    .then(categories => {
-        // Get the select element
-        const select = document.getElementById('newTodoCategory');
-        
-        // Populate the select element with options for each user
-        categories.forEach(category => {
-            const option = document.createElement('option');
-            option.value = category.name;
-            option.textContent = category.name;
-            select.appendChild(option);
-        });
-    })
-    .catch(error => console.error('Error fetching users:', error));
+        .then(response => response.json())
+        .then(categories => {
+            // Get the select element
+            const select = document.getElementById('newTodoCategory');
+
+            // Populate the select element with options for each user
+            categories.forEach(category => {
+                const option = document.createElement('option');
+                option.value = category.name;
+                option.textContent = category.name;
+                select.appendChild(option);
+            });
+        })
+        .catch(error => console.error('Error fetching users:', error));
 
     // Form submission event listener
-    document.getElementById('todo-form').addEventListener('submit', function(event) {
+    document.getElementById('todo-form').addEventListener('submit', function (event) {
         event.preventDefault();
 
         // Get the task description and selected user id
@@ -60,13 +60,12 @@ document.addEventListener('DOMContentLoaded', function() {
             },
             body: JSON.stringify(requestBody)
         })
-        .then(response => response.json())
-        .then(newTodo => {
-            console.log('New ToDo created:', newTodo);
-            // Optionally, you can redirect to another page or display a success message
-            // window.location.href = '/todos.html';
-            // alert('ToDo added successfully!');
-        })
-        .catch(error => console.error('Error adding ToDo:', error));
+            .then(response => response.json())
+            .then(newTodo => {
+                console.log('New ToDo created:', newTodo);
+                alert("Task added succesfully");
+                location.reload();
+            })
+            .catch(error => console.error('Error adding ToDo:', error));
     });
 });
