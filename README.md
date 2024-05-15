@@ -1,55 +1,26 @@
-# Stay Organized Workshop Server
-This is intended to be the backend for the Stay Organized workshop.
+# To-Do List Web Application
 
-## Setup this server locally
-This section will discuss how to get the Stay Organized server up and running locally
+This is a simple web application for managing your to-do tasks. It allows users to create new tasks, view existing to-do lists, and register new users.
 
-- Verify Node.js is installed by running the following command.
-  
-  **Command to run**
-  ```bash
-    node -v
-  ```
-  **Sample Output**
-  ```bash
-    v14.15.4     (or something similar)
-  ```
+## Features
 
-  > **Note:** If you do not have Node.js installed, you can install the LTS (Long-term Support) version from here: https://nodejs.org/en/
+- **Home Page**: Welcome page for users with options to navigate to different sections of the application.
+<img src="/images/home.png">
 
-- Clone this repository to your local computer.
+- **New Task Page**: Allows users to add a new task to any users to-do list. There are select options for the user, category, and priority fields, while the deadline must be a date and description is text input.
+<img src="/images/addTask.png">
 
-  ```bash
-    git clone https://github.com/DevelopIntelligenceBoulder/stay-organized-workshop-express-server
-  ```
+- **New User Page**: Allows new users to register and create an account. Checks for duplicate usernames and checks to make sure password and password confirmation are the same before registering.
+<img src="/images/newUser.png">
 
-- Change directories (`cd`) into the newly cloned project folder.
+- **View To-Do Lists Page**: Displays a select bar to select an existing user and view their to-do lists with an option to change a tasks completion status. The tasks are displayed as bootstrap cards with a simple animation when the user is selected.
+<img src="/images/todos.png">
 
-  ```bash
-    cd stay-organized-workshop-express-server
-  ```
+## Technologies Used
 
-- Install the projects dependencies with NPM (Node Package Manager).
-  
-  ```bash
-    npm install
-  ```
+- HTML
+- CSS (Bootstrap for styling)
+- JavaScript
 
-- Start the local server
 
-  **Command to start the server**
-  ```bash
-    npm start
-  ```
 
-  **Expected Output**
-  ```bash
-    App listening at port 8083
-  ```
-
-- Verify the server is working as expected by acessing http://localhost:8083/api/users with a broswer or a third party tool like [Postman](https://www.postman.com/)
-
-  **Expected output from URL**
-  ```js
-  [{"id":1,"name":"Ian Auston","username":"gamer04"},{"id":2,"name":"Siddalee Grace","username":"cheer"},{"id":3,"name":"Pursalane Faith","username":"farmgirl"},{"id":4,"name":"Zephaniah Hughes","username":"corndog"},{"id":5,"name":"Ezra Aidden","username":"theaterkid"},{"id":6,"name":"Elisha Aslan","username":"gamer05"},{"id":7,"name":"Betty Smalltree","username":"betty812"}]
-  ```

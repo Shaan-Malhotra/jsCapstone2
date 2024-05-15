@@ -2,7 +2,8 @@ body {
     margin-left: 50px;
     margin-right: 50px;
     background-color: azure;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    /* font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; */
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
 }
 
 .card {
@@ -63,10 +64,12 @@ h1 {
 @keyframes slideInBottom {
     from {
         transform: translateY(500px);
+        opacity: 0;
     }
 
     to {
         transform: translateY(0);
+        opcacity: 1;
     }
 }
 .slideInBottom {
