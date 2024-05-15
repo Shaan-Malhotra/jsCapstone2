@@ -12,6 +12,10 @@ body {
     margin-bottom: 20px;
 }
 
+.card:hover {
+    transform: scale(1.1);
+}
+
 h1 {
     margin-bottom: 10px;
     font-weight: bold;
@@ -54,4 +58,19 @@ h1 {
     background-color: #0056b3;
     transform: scale(1.1);
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+@keyframes slideInBottom {
+    from {
+        transform: translateY(500px);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+.slideInBottom {
+    animation-name: slideInBottom;
+    animation-duration: 1s;
+    animation-timing-function: ease-in;
 }

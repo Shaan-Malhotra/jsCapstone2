@@ -42,6 +42,7 @@ function fetchUserTodos(userId) {
                     card.classList.add("col");
                     var cardBody = document.createElement("div");
                     cardBody.classList.add("card");
+                    cardBody.classList.add("slideInBottom");
 
                     // create check icon
                     const checkSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
@@ -74,7 +75,6 @@ function fetchUserTodos(userId) {
                     var cardContent = `
                         <div class="card-body">
                             <h5 class="card-title">${todo.description}</h5>
-
                             <a href="#" class="details-link btn btn-link" data-bs-toggle="collapse" data-bs-target="#todoDetailsCollapse${todo.id}" aria-expanded="false" aria-controls="todoDetailsCollapse${todo.id}">
                                 Details
                             </a>
@@ -110,7 +110,6 @@ function fetchUserTodos(userId) {
                             markAsIncomplete(todo.id);
                         });
                     }
-
                 });
             }
         })
