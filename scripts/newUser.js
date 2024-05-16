@@ -22,6 +22,11 @@ document.getElementById('register-form').addEventListener('submit', function (ev
         password: password
     };
 
+    // Clear error message on username change
+    document.getElementById('username').addEventListener('input', function () {
+        document.getElementById('username-error').textContent = '';
+    });
+
     // Send POST request to add user
     fetch('/api/users', {
         method: 'POST',
@@ -36,15 +41,22 @@ document.getElementById('register-form').addEventListener('submit', function (ev
             } else if (!response.ok) {
                 throw new Error('Failed to register user');
             }
+
+
             return response.json();
         })
         .then(newUser => {
             console.log('New user added:', newUser);
-            alert("New user added succesfully");
-            location.reload();
+            document.getElementById('success-message').style.display = 'block'; // Show success message
+            setTimeout(() => {
+                document.getElementById('success-message').style.display = 'none'; // Hide success message after 5 seconds
+                location.reload(); // Reload the page after the success message has been displayed
+            }, 3000);
         })
+
         .catch(error => {
             console.error('Error registering user:', error);
             document.getElementById('username-error').textContent = error.message;
         });
+
 });

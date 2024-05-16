@@ -44,6 +44,22 @@ function fetchUserTodos(userId) {
                     cardBody.classList.add("card");
                     cardBody.classList.add("slideInBottom");
 
+                    // Conditional to get each todos status
+                    const deadlineDate = new Date(todo.deadline);
+                    const currentDate = new Date();
+                    todo.status = '';
+                    if (deadlineDate < currentDate && !todo.completed) {
+                        console.log(deadlineDate);
+                        console.log(currentDate);
+                        todo.status = "Overdue";
+                    }
+                    else if (todo.completed) {
+                        todo.status = "Completed";
+                    }
+                    else {
+                        todo.status = "In Progress";
+                    }
+
                     // create check icon
                     const checkSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
                     checkSvg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
@@ -84,6 +100,7 @@ function fetchUserTodos(userId) {
                                     <p><strong>Deadline:</strong> ${todo.deadline}</p>
                                     <p><strong>Priority:</strong> ${todo.priority}</p>
                                     <p><strong>Completed:</strong> ${completedIcon}</p>
+                                    <p><strong>Status:</strong> ${todo.status}</p>
                                     <button class="complete-button btn btn-primary" style="display: none;" data-todo-id="${todo.id}">Mark as Complete</button>
                                     <button class="incomplete-button btn btn-primary" style="display: none;" data-todo-id="${todo.id}">Mark as Incomplete</button>
                                 </div>
@@ -110,6 +127,7 @@ function fetchUserTodos(userId) {
                             markAsIncomplete(todo.id);
                         });
                     }
+
                 });
             }
         })
@@ -131,8 +149,11 @@ function markAsComplete(id) {
             if (!response.ok) {
                 throw new Error('Failed to mark todo as complete');
             }
-            alert("item marked as complete");
-            location.reload();
+            document.getElementById('success-message').style.display = 'block'; // Show success message
+            setTimeout(() => {
+                document.getElementById('success-message').style.display = 'none'; // Hide success message after 5 seconds
+                location.reload(); // Reload the page after the success message has been displayed
+            }, 2000);
         })
         .catch(error => console.error("Error marking todo as complete:", error));
 }
@@ -152,8 +173,11 @@ function markAsIncomplete(id) {
             if (!response.ok) {
                 throw new Error('Failed to mark todo as incomplete');
             }
-            alert("item marked as incomplete");
-            location.reload();
+            document.getElementById('success-message').style.display = 'block'; // Show success message
+            setTimeout(() => {
+                document.getElementById('success-message').style.display = 'none'; // Hide success message after 5 seconds
+                location.reload(); // Reload the page after the success message has been displayed
+            }, 2000);
         })
         .catch(error => console.error("Error marking todo as incomplete:", error));
 }

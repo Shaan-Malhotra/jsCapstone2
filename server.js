@@ -43,19 +43,23 @@ app.get("/webpages/new_todo.html", (req, res) => {
 
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, 'webpages/index.html'));
-}); 
+});
 app.get("/scripts/todos.js", (req, res) => {
     res.set('Content-Type', 'text/javascript');
     res.sendFile(path.join(__dirname, 'scripts/todos.js'));
-}); 
+});
 app.get("/scripts/newTodo.js", (req, res) => {
     res.set('Content-Type', 'text/javascript');
     res.sendFile(path.join(__dirname, 'scripts/newTodo.js'));
-}); 
+});
 app.get("/scripts/newUser.js", (req, res) => {
     res.set('Content-Type', 'text/javascript');
     res.sendFile(path.join(__dirname, 'scripts/newUser.js'));
-}); 
+});
+app.get("/scripts/deleteUser.js", (req, res) => {
+    res.set('Content-Type', 'text/javascript');
+    res.sendFile(path.join(__dirname, 'scripts/deleteUser.js'));
+});
 
 
 
@@ -206,18 +210,18 @@ app.get("/api/users/:username", function (request, response) {
     // If no matching user
     if (!matchingUser) {
         console.warn(`LOG: **NOT FOUND**: user ${username} does not exist!`);
-        
+
         response
             .status(404)
             .end();
-    
+
         return;
     }
 
     // Create a copy without the password
-    const userWithoutPassword = { 
-        id: matchingUser.id, 
-        name: matchingUser.name, 
+    const userWithoutPassword = {
+        id: matchingUser.id,
+        name: matchingUser.name,
         username: matchingUser.username,
     };
 
@@ -239,7 +243,7 @@ app.post("/api/todos", function (request, response) {
     const { userid, category, description, deadline, priority } = request.body
     if (!userid || !category || !description || !deadline || !priority) {
         console.warn("LOG: **MISSING DATA**: one or more todo properties missing");
-        
+
         response
             .status(400)
             .json({ error: "Missing data, can't process: one or more Todo properties missing." });
@@ -253,7 +257,7 @@ app.post("/api/todos", function (request, response) {
     // Get the id of this new todo
     const nextIdJson = fs.readFileSync(__dirname + "/data/next-ids.json", "utf8");
     const nextIdData = JSON.parse(nextIdJson);
-    
+
     // Create the todo w/ new id and completed marked as false
     const todo = {
         id: nextIdData.nextTodoId,
@@ -264,7 +268,7 @@ app.post("/api/todos", function (request, response) {
         priority: priority,
         completed: false,
     };
-    
+
     nextIdData.nextTodoId += 1;
     fs.writeFileSync(__dirname + "/data/next-ids.json", JSON.stringify(nextIdData));
 
@@ -377,6 +381,39 @@ app.post("/api/users", function (request, response) {
     response
         .status(201)
         .json(user);
+});
+
+app.delete("/api/users/:username", function (request, response) {
+    const username = request.params.username;
+
+    console.info("LOG: Got a DELETE request for user:", username);
+
+    // Read users data from file
+    const json = fs.readFileSync(__dirname + "/data/users.json", "utf8");
+    let users = JSON.parse(json);
+
+    // Find the index of the user with the specified username
+    const index = users.findIndex(user => user.username === username);
+
+    if (index !== -1) {
+        // Remove the user from the array
+        const deletedUser = users.splice(index, 1)[0];
+
+        // Write updated users data back to file
+        fs.writeFileSync(__dirname + "/data/users.json", JSON.stringify(users, null, 2), "utf8");
+
+        // LOG data for tracing
+        console.info("LOG: Deleted user:", deletedUser);
+
+        response
+            .status(200)
+            .json(deletedUser); // Return the deleted user
+    } else {
+        console.warn("WARN: User not found:", username);
+        response
+            .status(404)
+            .json({ error: "User not found" });
+    }
 });
 
 

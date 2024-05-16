@@ -10,11 +10,12 @@ document.addEventListener('DOMContentLoaded', function () {
             data.forEach(user => {
                 const option = document.createElement('option');
                 option.value = user.id;
-                option.textContent = user.name;
+                option.textContent = user.username;
                 select.appendChild(option);
             });
         })
         .catch(error => console.error('Error fetching users:', error));
+
     // Fetch users from the API
     fetch('/api/categories')
         .then(response => response.json())
@@ -63,8 +64,11 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(response => response.json())
             .then(newTodo => {
                 console.log('New ToDo created:', newTodo);
-                alert("Task added succesfully");
-                location.reload();
+                document.getElementById('success-message').style.display = 'block'; // Show success message
+                setTimeout(() => {
+                    document.getElementById('success-message').style.display = 'none'; // Hide success message after 5 seconds
+                    location.reload(); // Reload the page after the success message has been displayed
+                }, 3000);
             })
             .catch(error => console.error('Error adding ToDo:', error));
     });

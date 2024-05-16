@@ -16,11 +16,15 @@ This is a simple web application for managing your to-do tasks. It allows users 
 - **View To-Do Lists Page**: Displays a select bar to select an existing user and view their to-do lists with an option to change a tasks completion status. The tasks are displayed as bootstrap cards with a simple animation when the user is selected.
 <img src="/images/todos.png">
 
+- **Delete User Page**: Displays a select bar to select an existing user and a delete button to delete the selcted user from the api.
+<img src="/images/deleteUser.png">
+
 ## Technologies Used
 
 - HTML
 - CSS (Bootstrap for styling)
 - JavaScript
+- Node Express Server
 
 
 
