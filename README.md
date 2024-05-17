@@ -22,9 +22,10 @@ This is a simple web application for managing your to-do tasks. It allows users 
 ## Technologies Used
 
 - HTML
-- CSS (Bootstrap for styling)
+- CSS 
+- Bootstrap
 - JavaScript
-- Node Express Server
+- Express Server
 
 
 
