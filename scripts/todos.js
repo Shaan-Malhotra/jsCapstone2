@@ -60,6 +60,19 @@ function fetchUserTodos(userId) {
                         todo.status = "In Progress";
                     }
 
+                    // change card color based on todo status
+                    var backgroundColor = '';
+                    if (todo.completed) {
+                        backgroundColor = 'lightgreen';
+                    } else if (todo.status === "In Progress") {
+                        backgroundColor = 'lightyellow';
+                    } else {
+                        backgroundColor = 'hsl(0, 70%, 80%)';
+                    }
+
+                    // Set background color of card
+                    cardBody.style.backgroundColor = backgroundColor;
+
                     // create check icon
                     const checkSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
                     checkSvg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
